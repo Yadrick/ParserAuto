@@ -67,7 +67,7 @@ namespace AutoParser
         {
             try
             {
-                if (excel != null)
+                if (excel.ws != null)
                 {
                     excel.SaveAs($@"{Environment.CurrentDirectory}\thrlist{ countOfCopy}.xlsx");
                     MessageBox.Show($@"Данные успешно сохранены в {Environment.CurrentDirectory}\thrlist{ countOfCopy}.xlsx");
