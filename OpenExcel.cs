@@ -13,8 +13,7 @@ using ExcelDataReader;
 
 namespace AutoParser
 {
-    //КЛАСС УМЕЕТ: ОТКРЫВАТЬ ФАЙЛ, ЧИТАТЬ ДАННЫЕ ИЗ ТАБЛИЦЫ И ВОЗВРАЩАТЬ ИХ ЗНАЧЕНИЕ
-    //ПЕРЕПИСЫВАТЬ ЗНАЧЕНИЕ ТАБДИЦЫ, СОХРАНЯТЬ ФАЙЛ ПОСЛЕ РЕДАКТИРОВАНИЯ, СОХРАНЯТЬ ФАЙЛ В ОДЕЛЬНОМ ФАЙЛЕ, ЗАКРЫВАТЬ ФАЙЛ
+
     public class OpenExcel
     {
         string path = "";                                                                       // путь Excel
@@ -173,7 +172,23 @@ namespace AutoParser
         // Функция закрыает открытый файл Excel, который открывается в конструкторе класса
         public void Close()
         {
-            if (wb != null) { wb.Close(); }
+            Process[] excelProcs = Process.GetProcessesByName("EXCEL");
+            try
+            {
+                foreach (var item in excelProcs)
+                {
+                    item.Kill();
+                }
+               
+            }
+            finally
+            {
+                if (excel!= null) { Marshal.ReleaseComObject(excel); }
+                if (wb != null) { Marshal.ReleaseComObject(wb); }
+                if (work != null) { Marshal.ReleaseComObject(work); }
+                if (ws != null) { Marshal.ReleaseComObject(ws); }
+
+            }
         }
     }
 }
