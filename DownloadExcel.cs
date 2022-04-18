@@ -13,7 +13,7 @@ namespace AutoParser
         {
             WebClient wc = new WebClient();
 
-            wc.DownloadFileAsync(new Uri("https://bdu.fstec.ru/files/documents/thrlist.xlsx"), $@"{Environment.CurrentDirectory}\thrlist.xlsx");
+            wc.DownloadFile(new Uri("https://bdu.fstec.ru/files/documents/thrlist.xlsx"), $@"{Environment.CurrentDirectory}\thrlist.xlsx");
            
         }
     }
